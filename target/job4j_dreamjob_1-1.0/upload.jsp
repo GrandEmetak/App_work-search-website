@@ -1,51 +1,51 @@
-<%--
+<%@ page import="ru.job4j.dream.model.Candidate" %>
+<%@ page import="ru.job4j.dream.store.MemStore" %><%--
   Created by IntelliJ IDEA.
   User: AdminTH
   Date: 14.10.2021
   Time: 19:34
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" pageEncoding="UTF-8" session="true"%>
+<%@ page language="java" pageEncoding="UTF-8" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Upload</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Upload</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
-
-<div class="container">
-  <table class="table">
+<table class="table">
     <thead>
     <tr>
-      <th>URL</th>
-      <th>View</th>
+        <th>URL</th>
+        <th>View</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${images}" var="image" varStatus="status">
-      <tr valign="top">
-        <td><a href="<c:url value='/download?name=${image}'/>">Download</a></td>
-        <td>
-          <img src="<c:url value='/download?name=${image}'/>" width="100px" height="100px"/>
-        </td>
-      </tr>
-    </c:forEach>
-    </tbody>
-  </table>
-  <h2>Upload image</h2> <%-- Давайте сделаем форму с вводом файла.--%>
-  <form action="<c:url value='/upload'/>" method="post" enctype="multipart/form-data">
-    <div class="checkbox">
-      <input type="file" name="file"> <%--В html есть форма загрузки файла.  В браузере она отобразится, как кнопка с выбором файла.--%>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-</div>
+    <%
+        String id = request.getParameter("id");
+        Candidate candidate = new Candidate(0, "");
+        if (id != null) {
+            candidate = MemStore.instOf().findByIdCandidate(Integer.parseInt(id));
+        }
+    %>
+    <table class="container">
 
-</body>
+            <h2>Upload image</h2>
+        <form action="<%=request.getContextPath()%>/upload?id=<%=candidate.getId()%>" method="post" enctype="multipart/form-data">> <%--? --%>
+           <%-- <form action="<c:url value='/upload?id=${candidate.id}'/>" method="post" enctype="multipart/form-data"> --%>
+                <div class="checkbox">
+                    <input type="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+    </table>
+    </tbody>
+</table>
+</div>
+</tbody>
 </html>

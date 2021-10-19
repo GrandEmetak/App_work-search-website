@@ -14,7 +14,7 @@
   Создадим страницу для создания новой вакансии.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.Store" %>
+<%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Post" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -43,7 +43,7 @@
     String id = request.getParameter("id");
    Candidate candidate = new Candidate(0, "");
     if (id != null) {
-       candidate = Store.instOf().findByIdCandidate(Integer.parseInt(id));
+       candidate = MemStore.instOf().findByIdCandidate(Integer.parseInt(id));
     }
 %>
 <div class="container pt-3">

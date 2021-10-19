@@ -1,12 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
-  User: AdminTH
+  User: SlartiBartFast-art
   Date: 13.10.2021
   Time: 16:35
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.Store" %>
+<%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="java.util.Collection" %>
 <%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
@@ -36,6 +36,13 @@
     <title>Работа мечты</title>
 </head>
 <body>
+<%
+    String id = request.getParameter("id");
+    Candidate candidate = new Candidate(0, "");
+    if (id != null) {
+        candidate = MemStore.instOf().findByIdCandidate(Integer.parseInt(id));
+    }
+%>
 <div class="container pt-3">
 
     <div class="row">
@@ -71,17 +78,19 @@
                        </td>
                        </tr>
                        --%>
+                    <%-- загрузка КандидатСервлеет, doGet - от него приходит перечень Кандидатов--%>
                     <c:forEach items="${candidates}" var="candidate">
                         <tr>
-                            <td>
+                            <td> <%-- Передали в ДонлоадСервлет по ключу name - id Кандидата, doGet вернул фото из папки с таким номером--%>
                                 <img src="<c:url value='/download?name=${candidate.id}'/>" width="50px" height="50px"/>
                             </td>
-                            <td>                <%--добавить иконку редактирования втаблицу и ссылку на страницу edit. --%>
-                                <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
-                                    <i class="fa fa-edit mr-3"></i>
+                            <td>                <%--добавить иконку редактирования в таблицу и ссылку на страницу edit. --%>
+                                <a href="<c:url value='/candidate/edit.jsp?id=${candidate.id}'/>">
+                                    <em class="fa fa-edit mr-3"></em>
                                 </a>
                                 <br>
-                                <a href="<c:url value='/upload.jsp?id=${candidate.id}'/>">Edit photo</a>
+                                <a href="<c:url value='/upload.jsp?id=${candidate.id}'/>">
+                                    Edit photo</a>
                                 <br>
                                 <form style="display: inline" action="<c:url value='/candidates.do?id=${candidate.id}&method=delete'/>" method="post">
                                     <button>Delete candidate</button>
