@@ -1,7 +1,7 @@
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="ru.job4j.dream.store.MemStore" %><%--
   Created by IntelliJ IDEA.
-  User: AdminTH
+  User: SlartiBartFast-art
   Date: 14.10.2021
   Time: 19:34
   To change this template use File | Settings | File Templates.
