@@ -1,5 +1,6 @@
 <%@ page import="ru.job4j.dream.model.Candidate" %>
-<%@ page import="ru.job4j.dream.store.MemStore" %><%--
+<%@ page import="ru.job4j.dream.store.MemStore" %>
+<%@ page import="ru.job4j.dream.store.PsqlStore" %><%--
   Created by IntelliJ IDEA.
   User: SlartiBartFast-art
   Date: 14.10.2021
@@ -18,34 +19,41 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<table class="table">
-    <thead>
-    <tr>
-        <th>URL</th>
-        <th>View</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%
-        String id = request.getParameter("id");
-        Candidate candidate = new Candidate(0, "");
-        if (id != null) {
-            candidate = MemStore.instOf().findByIdCandidate(Integer.parseInt(id));
-        }
-    %>
-    <table class="container">
-
-            <h2>Upload image</h2>
-        <form action="<%=request.getContextPath()%>/upload?id=<%=candidate.getId()%>" method="post" enctype="multipart/form-data">> <%--? --%>
-           <%-- <form action="<c:url value='/upload?id=${candidate.id}'/>" method="post" enctype="multipart/form-data"> --%>
-                <div class="checkbox">
-                    <input type="file" name="file">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-    </table>
-    </tbody>
-</table>
+<body>
+<%
+    String id = request.getParameter("id");
+    Candidate candidate = new Candidate(0, "Name NEMO");
+    if (id != null) {
+        candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
+    }
+%>
+<div class="container pt-3">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>URL</th>
+                <th>View</th>
+            </tr>
+            </thead>
+            <tbody>
+            <table class="container">
+                <%--   <c:forEach items="${candidates}" var="candidate"> --%>
+                <h2>Upload image</h2>
+                    <%--  <jsp:text> <% request.getParameter("id");%></jsp:text>--%>
+                 <form action="<%=request.getContextPath()%>/upload?id=<%=candidate.getId()%>" method="post" enctype="multipart/form-data">
+                       <%--? --%>
+                    <%--   <form action="<c:url value='/upload?id=${candidate.id}'/>" method="post" enctype="multipart/form-data"> --%>
+                    <div class="checkbox">
+                        <input type="file" name="file">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <%--  </c:forEach> --%>
+            </table>
+            </tbody>
+        </table>
+    </div>
 </div>
-</tbody>
+</body>
 </html>

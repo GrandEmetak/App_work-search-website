@@ -1,4 +1,5 @@
 package ru.job4j.dream.store;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -21,6 +22,7 @@ import java.util.Properties;
 /**
  * 2. Замена MemStore на PsqlStore [#51922 #209148]01
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5. База данных в Web
+ *
  * @author SlartiBartFast-art
  * @since 13.10.21
  */
@@ -141,7 +143,7 @@ public class PsqlStore implements Store {
              PreparedStatement ps = cn.prepareStatement(
                      "DELETE FROM candidate name WHERE id = (?)")
         ) {
-            ps.setInt(2, id);
+            ps.setInt(1, id);
             ps.execute();
         } catch (SQLException e) {
             LOGGER.error("remove(int id) ERROR. Unable to SQL query", e);
@@ -316,8 +318,9 @@ public class PsqlStore implements Store {
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
-                post = new Post(id, it.getString("name"));
-
+                while (it.next()) {
+                    post = new Post(id, it.getString("name"));
+                }
             }
         } catch (SQLException e) {
             LOGGER.error("findById(int id) ERROR. Unable to SQL query", e);
@@ -343,11 +346,29 @@ public class PsqlStore implements Store {
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
-                candidate = new Candidate(id, it.getString("name"));
+                while (it.next()) {
+                    candidate = new Candidate(id, it.getString("name"));
+                    System.out.println("Что возвращается из БД : " + candidate.getName() + " " + candidate.getId());
+                }
             }
         } catch (SQLException e) {
+            System.out.println("Ошибка логера");
+            e.printStackTrace();
             LOGGER.error("findByIdCandidate(int id) ERROR. Unable to SQL query", e);
         }
+        System.out.println("Что RETURN : " + candidate.getName() + " " + candidate.getId());
         return candidate;
     }
+
+    public static void main(String[] args) {
+        var f = PsqlStore.instOf().findAllCandidates();
+        for (Candidate candidate : f) {
+            System.out.println("КАНДИДАТ : " + candidate.getName() + " " + candidate.getId());
+        }
+        var c = PsqlStore.instOf().findByIdCandidate(1);
+        System.out.println("ЧТо нашли в БД : " + c.getName() + c.getId());
+        var r = PsqlStore.instOf().findById(1);
+        System.out.println("Что возвращается из БД : " + r.getName() + " " + r.getId());
+    }
+
 }

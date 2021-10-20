@@ -5,6 +5,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import ru.job4j.dream.store.MemStore;
+import ru.job4j.dream.store.PsqlStore;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -44,7 +45,7 @@ public class UploadServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        req.setAttribute("candidates", MemStore.instOf().findAllCandidates());
+        req.setAttribute("candidates", PsqlStore.instOf().findAllCandidates());
         String name = req.getParameter("id") + ".png";
         System.out.println("urlPatterns = \"/upload\")\n"
                 + "public class UploadServlet   NAME + " + name);
@@ -74,7 +75,6 @@ public class UploadServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String s = req.getParameter("id");
-        System.out.println("String Upload id - : " + s);
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletContext servletContext = this.getServletConfig().getServletContext();
         File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
@@ -99,7 +99,6 @@ public class UploadServlet extends HttpServlet {
             for (FileItem item : items) {
                 if (!item.isFormField()) {
                     File file = new File(folder + File.separator + h);
-                    System.out.println("File Separatoe : " + file);
                     try (FileOutputStream out = new FileOutputStream(file)) {
                         out.write(item.getInputStream().readAllBytes());
                     }

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Post" %>
+<%@ page import="ru.job4j.dream.store.PsqlStore" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Post post : MemStore.instOf().findAllPosts()) { %>
+                    <% for (Post post : PsqlStore.instOf().findAllPosts()) { %>
                     <tr>
                         <td><%= post.getName() %></td>
                     </tr>

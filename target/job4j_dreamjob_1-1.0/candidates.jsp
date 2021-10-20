@@ -9,6 +9,7 @@
 <%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="java.util.Collection" %>
+<%@ page import="ru.job4j.dream.store.PsqlStore" %>
 <%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
@@ -40,7 +41,7 @@
     String id = request.getParameter("id");
     Candidate candidate = new Candidate(0, "");
     if (id != null) {
-        candidate = MemStore.instOf().findByIdCandidate(Integer.parseInt(id));
+        candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
     }
 %>
 <div class="container pt-3">
@@ -92,7 +93,7 @@
                                 <a href="<c:url value='/upload.jsp?id=${candidate.id}'/>">
                                     Edit photo</a>
                                 <br>
-                                <form style="display: inline" action="<c:url value='/candidates.do?id=${candidate.id}&method=delete'/>" method="post">
+                                <form style="display: inline" action="<c:url value='/delete.do?id=${candidate.id}'/>" method="post">
                                     <button>Delete candidate</button>
                                 </form>
                                 <c:out value="${candidate.name}"/> <%-- c:out value="post.name"- Вывод значения post. --%>

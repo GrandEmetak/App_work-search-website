@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import javax.servlet.http.HttpServlet;
 
 /**
  * 1. Загрузка и скачивание файла. [#154183 #207844]
@@ -42,6 +41,8 @@ public class DownloadServlet extends HttpServlet {
      * +
      * ATTENTION! -
      * удален файл web.xml, произведена замена во всех классах на аннотацию @WebServlet(urlPattern = " маппинг имя")
+     * System.out.println("File name : " + file.getName());
+     * String name = req.getParameter("name") + ".png";
      *
      * @param req
      * @param resp
@@ -50,19 +51,18 @@ public class DownloadServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name") + ".png";
+        String name = req.getParameter("name");
         System.out.println("NAME + " + name);
         File downloadFile = null;
         for (File file : new File("c:\\images\\").listFiles()) {
-            System.out.println("File name : " + file.getName());
-            if (name.equals(file.getName())) {
+            var f = file.getName().split("\\.");
+            if (name.equals(f[0])) {
                 downloadFile = file;
                 break;
             }
         }
         resp.setContentType("application/octet-stream");
         resp.setHeader("Content-Disposition", "attachment; filename=\"" + downloadFile.getName() + "\"");
-        System.out.println("downloadFile.getName()  - " + downloadFile.getName());
         try (FileInputStream stream = new FileInputStream(downloadFile)) {
             resp.getOutputStream().write(stream.readAllBytes());
         }

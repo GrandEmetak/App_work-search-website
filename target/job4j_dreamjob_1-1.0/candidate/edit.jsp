@@ -17,6 +17,7 @@
 <%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Post" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
+<%@ page import="ru.job4j.dream.store.PsqlStore" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -43,7 +44,7 @@
     String id = request.getParameter("id");
    Candidate candidate = new Candidate(0, "");
     if (id != null) {
-       candidate = MemStore.instOf().findByIdCandidate(Integer.parseInt(id));
+       candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
     }
 %>
 <div class="container pt-3">
