@@ -205,10 +205,12 @@ public class PsqlStore implements Store {
         ) {
             ps.setString(1, email);
             try (ResultSet it = ps.executeQuery()) {
-                user = new User(
-                        it.getInt("id"), it.getString("name"),
-                        it.getString("email"), it.getString("password")
-                );
+                while (it.next()) {
+                    user = new User(
+                            it.getInt("id"), it.getString("name"),
+                            it.getString("email"), it.getString("password")
+                    );
+                }
             }
         } catch (SQLException e) {
             LOGGER.error("findByEmail(String email) ERROR. Unable to SQL query", e);
