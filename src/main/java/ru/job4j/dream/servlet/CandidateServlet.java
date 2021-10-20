@@ -42,23 +42,13 @@ public class CandidateServlet extends HttpServlet {
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 
-  /*  @Override
+   @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-      /*  Store.instOf().saveCandidate(
-                new Candidate(Integer.parseInt(req.getParameter("id")),
-                        req.getParameter("name")));*/
-     /*   System.out.println("ID : " + req.getParameter("id"));
-        if (req.getParameter("method") != null && req.getParameter("method").equals("delete")) {
-            int id = PsqlStore.instOf().deleteCandidateId(Integer.parseInt(req.getParameter("id"))).getId();
-            new File("c\\images\\" + id + ".png").delete();
-        } else {
-            System.out.println("CandidateServlet : " + req.getParameter("id"));
             PsqlStore.instOf().saveCandidate(
                     new Candidate(
                             Integer.parseInt(req.getParameter("id")),
                             req.getParameter("name")));
-        }
         resp.sendRedirect(req.getContextPath() + "/candidates.do");
-    }*/
+    }
 }

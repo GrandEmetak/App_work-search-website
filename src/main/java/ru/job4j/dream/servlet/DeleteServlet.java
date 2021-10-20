@@ -37,10 +37,10 @@ public class DeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         var s = (req.getParameter("id"));
+        PsqlStore.instOf().deleteCandidateId(Integer.parseInt(s));
         for (File name : new File("c:\\images\\").listFiles()) {
             System.out.println("path : " + name);
             if (name.getName().startsWith(s)) {
-                PsqlStore.instOf().deleteCandidateId(Integer.parseInt(s));
                 new File("c\\images\\" + name.getName()).delete();
             }
         }
