@@ -1,11 +1,11 @@
 package ru.job4j.dream.servlet;
 
+import ru.job4j.dream.model.User;
+
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.http.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -13,14 +13,40 @@ import java.io.IOException;
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.6. Filter, Security
  * Сервлет проверяет почту и пароль, если они совпадают, то переходит на страницу вакансий.
  * Если нет, то возвращает обратно на страницу Login.
+ * 1. HttpSession [#6869 #209565]
+ * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
+ * Доработаем сервлет AuthServlet.
+ *
+ * @author SlartiBartFast-art
+ * @since 20.10.21
  */
 @WebServlet(urlPatterns = "/auth.do")
 public class AuthServlet extends HttpServlet {
+    /**
+     * Если пользователь ввел верную почту и пароль, то мы записываем в HttpSession
+     * детали этого пользователя.
+     * HttpSession sc = req.getSession();
+     * User admin = new User();
+     * admin.setName("Admin");
+     * admin.setEmail(email);
+     * sc.setAttribute("user", admin);
+     * Теперь эти данные можно получить на другой странице.
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         if ("root@local".equals(email) && "root".equals(password)) {
+            HttpSession sc = req.getSession();
+            User admin = new User();
+            admin.setName("Admin");
+            admin.setEmail(email);
+            sc.setAttribute("user", admin);
             resp.sendRedirect(req.getContextPath() + "/posts.do");
         } else {
             req.setAttribute("error", "Не верный email или пароль");

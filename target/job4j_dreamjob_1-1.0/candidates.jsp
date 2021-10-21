@@ -4,13 +4,19 @@
   Date: 13.10.2021
   Time: 16:35
   To change this template use File | Settings | File Templates.
+  У нас есть отдельная кнопка Выйти - ее функционал реализуем отдельно. Для этого определим следующую ссылку в сервлете:
+<c:if test="${user != null}">
+    <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">Выйти</a>
+    </li>
+</c:if>
 --%>
+<%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="ru.job4j.dream.store.PsqlStore" %>
-<%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -45,7 +51,32 @@
     }
 %>
 <div class="container pt-3">
-
+    <div class="row">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить
+                    кандидата</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out
+                        value="${user.name}"/> | </a>
+            </li>
+            <li class="nav-item">
+                <c:if test="${user != null}">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/logout.do"> Выйти</a>
+                </c:if>
+            </li>
+        </ul>
+    </div>
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">

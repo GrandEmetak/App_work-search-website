@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/posts.do")
 public class PostServlet extends HttpServlet {
@@ -27,7 +28,8 @@ public class PostServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("posts", PsqlStore.instOf().findAllPosts());
+        req.setAttribute("posts", new ArrayList<>(PsqlStore.instOf().findAllPosts()));
+        req.setAttribute("user", req.getSession().getAttribute("user"));
         req.getRequestDispatcher("posts.jsp").forward(req, resp);
     }
 

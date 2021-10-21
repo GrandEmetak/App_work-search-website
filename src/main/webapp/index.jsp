@@ -4,11 +4,18 @@
   Date: 08.10.2021
   Time: 17:29
   To change this template use File | Settings | File Templates.
+У нас есть отдельная кнопка Выйти - ее функционал реализуем отдельно. Для этого определим следующую ссылку в сервлете:
+<c:if test="${user != null}">
+    <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">Выйти</a>
+    </li>
+</c:if>
 --%>
 <!-- Импорты классов java для работы с ними-->
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Post" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>

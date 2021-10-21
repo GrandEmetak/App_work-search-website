@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: AdminTH
+  User: SlartiBartFast-art
   Date: 13.10.2021
   Time: 16:39
   To change this template use File | Settings | File Templates.
@@ -43,11 +43,33 @@
 </head>
 <body>
 <div class="container pt-3">
-
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Вакансии
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить
+                            кандидата</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out
+                                value="${user.name}"/> | </a>
+                    </li>
+                    <li class="nav-item">
+                        <c:if test="${user != null}">
+                            <a class="nav-link" href="<%=request.getContextPath()%>/logout.do"> Выйти</a>
+                        </c:if>
+                    </li>
+                </ul>
             </div>
             <div class="card-body">
                 <table class="table">
