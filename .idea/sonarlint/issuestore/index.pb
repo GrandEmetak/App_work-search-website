@@ -22,8 +22,6 @@ f
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-B
-db/schemaUsers.sql,9\5\955c8054e95379154aecb8c2a3868908c223f039
 =
 db/schema.sql,d\1\d19519c76e8593a74e058b0faf7a7a9aa4b1ae61
 F
@@ -44,3 +42,19 @@ M
 ,src/main/java/ru/job4j/dream/model/User.java,3\1\3124e76c62056a1c0b84d2253c3e4b8ceedbbcdf
 H
 src/main/webapp/post.jsp,c\1\c18f5e9bf733ce157f6d5cc2ae040e9848655433
+@
+log4j.properties,7\3\7330e4252652b61093498eabc26c3cadee5d89b7
+R
+"src/main/webapp/candidate/edit.jsp,2\5\2571f819a1735e0081fff367f09ca2425faeb8d1
+g
+7src/main/java/ru/job4j/dream/servlet/UploadServlet.java,6\a\6afa4945bf12eb2a98a4692b5db3c517c2efce78
+J
+src/main/webapp/upload.jsp,6\8\6887117afe14182a0008557943bf342af786ed9a
+j
+:src/main/java/ru/job4j/dream/servlet/CandidateServlet.java,8\f\8fd719a8d4980c9cdddcabc3a6770e5cdb3aafae
+g
+7src/main/java/ru/job4j/dream/servlet/DeleteServlet.java,8\2\82a9b9bd643e71c45bf0786c3313858df2c97733
+g
+7src/main/java/ru/job4j/dream/servlet/LogoutServlet.java,7\4\7480b43b4c0e4a7d9fd5dcf04a210c3bd8668095
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

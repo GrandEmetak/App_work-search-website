@@ -334,6 +334,10 @@ public class PsqlStore implements Store {
         return candidate;
     }
 
+    /**
+     * Метод производит сохрение пользователя в БД через вызов метода createUser(user);
+     * @param user Пользователь
+     */
     @Override
     public void save(User user) {
         if (user.getId() == 0) {

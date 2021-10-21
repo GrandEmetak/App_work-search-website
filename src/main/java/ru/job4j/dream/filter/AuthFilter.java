@@ -16,6 +16,9 @@ import java.io.IOException;
  * Так же вспомните принцип единой ответственности SRP.
  * Фильтр должен выполнять задачи для одной группы пользователей.
  * Все запросы с расширением *.do будут обрабатываться нашим фильтром.
+ * 4. Регистрация пользователя. [#283110 #209712]
+ * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
+ * В AuthFilter добавьте игнорировние сервлета reg.do.
  * <p>
  * IMPORTANT! - добавлена аннотация @WebFilter вместо прописывания его в web.xml
  * <filter>
@@ -57,7 +60,7 @@ public class AuthFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) sreq;
         HttpServletResponse resp = (HttpServletResponse) sresp;
         String uri = req.getRequestURI();
-        if (uri.endsWith("auth.do")) {
+        if (uri.endsWith("auth.do") || uri.endsWith("reg.do")) {
             chain.doFilter(sreq, sresp);
             return;
         }
