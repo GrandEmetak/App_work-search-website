@@ -15,8 +15,6 @@ b
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 O
 src/main/webapp/PhotoUpload.jsp,0\5\0526e876e4030591c312649f1a7809d80072bdc4
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 D
 job4j_dreamjob_1.iml,6\1\61e9a9d2b931bce38609b34b0b590573423f2619
 f
@@ -28,8 +26,6 @@ B
 db/schemaUsers.sql,9\5\955c8054e95379154aecb8c2a3868908c223f039
 =
 db/schema.sql,d\1\d19519c76e8593a74e058b0faf7a7a9aa4b1ae61
-W
-'src/main/java/ru/job4j/dream/Store.java,0\b\0b96dd33c4f2a2e0d02ef8fa983dba35bcaf0079
 F
 db/schemaCandidate.sql,e\3\e3f3de38ec149121cb8143f49a38c60314da9170
 =

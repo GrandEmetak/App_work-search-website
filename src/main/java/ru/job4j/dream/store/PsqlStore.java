@@ -22,7 +22,10 @@ import java.util.Properties;
 /**
  * 2. Замена MemStore на PsqlStore [#51922 #209148]01
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5. База данных в Web
- *
+ *3. Расширить Store для пользователя. [#283109 #209648]
+ * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
+ * 1. Расширьте интерфейс Store. Добавьте методы для работы с классом User.
+ * сохранение и поиск по email, и добавьте реализацию в методы
  * @author SlartiBartFast-art
  * @since 13.10.21
  */
@@ -151,15 +154,6 @@ public class PsqlStore implements Store {
         return candidate;
     }
 
-    @Override
-    public void save(User user) {
-        if (user.getId() == 0) {
-            createUser(user);
-        } else {
-            updateUser(user);
-        }
-    }
-
     private User createUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
@@ -194,28 +188,6 @@ public class PsqlStore implements Store {
         } catch (SQLException e) {
             LOGGER.error("updateUser(User user) ERROR. Unable to SQL query", e);
         }
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        User user = null;
-        try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement(
-                     "SELECT * FROM users WHERE email = (?)")
-        ) {
-            ps.setString(1, email);
-            try (ResultSet it = ps.executeQuery()) {
-                while (it.next()) {
-                    user = new User(
-                            it.getInt("id"), it.getString("name"),
-                            it.getString("email"), it.getString("password")
-                    );
-                }
-            }
-        } catch (SQLException e) {
-            LOGGER.error("findByEmail(String email) ERROR. Unable to SQL query", e);
-        }
-        return user;
     }
 
     /**
@@ -360,6 +332,37 @@ public class PsqlStore implements Store {
         }
         System.out.println("Что RETURN : " + candidate.getName() + " " + candidate.getId());
         return candidate;
+    }
+
+    @Override
+    public void save(User user) {
+        if (user.getId() == 0) {
+            createUser(user);
+        } else {
+            updateUser(user);
+        }
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        User user = null;
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     "SELECT * FROM users WHERE email = (?)")
+        ) {
+            ps.setString(1, email);
+            try (ResultSet it = ps.executeQuery()) {
+                while (it.next()) {
+                    user = new User(
+                            it.getInt("id"), it.getString("name"),
+                            it.getString("email"), it.getString("password")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("findByEmail(String email) ERROR. Unable to SQL query", e);
+        }
+        return user;
     }
 
     public static void main(String[] args) {
