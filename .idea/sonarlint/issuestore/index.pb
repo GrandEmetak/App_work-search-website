@@ -30,8 +30,6 @@ F
 db.properties,3\b\3b8c33088fa60dfa967fdedbf4c75fa52fdece9a
 `
 0src/main/java/ru/job4j/dream/store/PsqlMain.java,8\c\8c405f2fd2c338b4806e1cf87d3cdda350f01f60
-`
-0src/main/java/ru/job4j/dream/store/MemStore.java,6\d\6d11d9c0b78e12480ad6606e0e0f491f60744535
 a
 1src/main/java/ru/job4j/dream/model/Candidate.java,4\b\4b8a5c79f2a9ed7b6ba811a80b6aa89367c7d84f
 =
@@ -50,11 +48,7 @@ g
 7src/main/java/ru/job4j/dream/servlet/UploadServlet.java,6\a\6afa4945bf12eb2a98a4692b5db3c517c2efce78
 J
 src/main/webapp/upload.jsp,6\8\6887117afe14182a0008557943bf342af786ed9a
-j
-:src/main/java/ru/job4j/dream/servlet/CandidateServlet.java,8\f\8fd719a8d4980c9cdddcabc3a6770e5cdb3aafae
 g
 7src/main/java/ru/job4j/dream/servlet/DeleteServlet.java,8\2\82a9b9bd643e71c45bf0786c3313858df2c97733
 g
 7src/main/java/ru/job4j/dream/servlet/LogoutServlet.java,7\4\7480b43b4c0e4a7d9fd5dcf04a210c3bd8668095
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

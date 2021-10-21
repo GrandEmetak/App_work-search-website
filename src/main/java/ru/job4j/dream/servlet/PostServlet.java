@@ -28,10 +28,20 @@ public class PostServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("posts", new ArrayList<>(PsqlStore.instOf().findAllPosts()));
+        req.setAttribute("posts", PsqlStore.instOf().findAllPosts());
         req.setAttribute("user", req.getSession().getAttribute("user"));
         req.getRequestDispatcher("posts.jsp").forward(req, resp);
     }
+    /*или
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    String edit = req.getParameter("edit");
+        String path = edit != null ? "/post/edit.jsp" : "/post/posts.jsp";
+        req.setAttribute("user", req.getSession().getAttribute("user"));
+        if (edit == null) {
+            req.setAttribute("posts", store.findAll());
+        }
+        req.getRequestDispatcher(path).forward(req, resp);
+     */
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
