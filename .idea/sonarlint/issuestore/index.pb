@@ -9,8 +9,6 @@ b
 +src/main/java/ru/job4j/model/Candidate.java,c\c\cc95b3860d1a738c95421e7f205d68086196acf6
 >
 checkstyle.xml,0\d\0d7fcbf2189c1d04b7686bca0ee60fdded230e2d
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 \
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 O
