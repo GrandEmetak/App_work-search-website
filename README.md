@@ -1,5 +1,4 @@
-[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1)
-
+[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1.svg?branch=master)](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1)
 # job4j_dreamjob
 
 Приложение находится в разработке.
