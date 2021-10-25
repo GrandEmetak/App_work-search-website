@@ -27,3 +27,7 @@ hs_err_pid*
 
 target
 out
+'.idea' 
+.idea 
+*.iml 
+'*.iml' 
