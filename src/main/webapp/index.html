@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+        let y = 3;
+
         function validate() {
             var x = Boolean(true);
             if ($('#firstName').val() === "") {
@@ -27,6 +29,30 @@
                 x = false;
             }
             return x;
+        }
+
+        function increase() {
+            y = y + 1;
+            return y;
+        }
+
+        function addRow() {
+            let rsl = Boolean(false);
+            if (validate()) {
+                const nameF = $('#firstName').val();
+                const nameS = $('#lastName').val();
+                const genderR = $('#gender').val();
+                const descD = $('#description').val();
+                $('#table tr:last').after('<tr>' +
+                    '<td>' + increase() + '</td>' +
+                    '<td>' + nameF + '</td>' +
+                    '<td>' + nameS + '</td>' +
+                    '<td>' + genderR + '</td>' +
+                    '<td>' + descD + '</td>' +
+                    '</tr>');
+                rsl = true;
+            }
+            return rsl;
         }
     </script>
 </head>
@@ -60,26 +86,30 @@
     <div class="form-auto">
         <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" title="Enter First name." id="firstName" placeholder="Pleas enter First name" required>
+            <input type="text" class="form-control" title="Enter First name." id="firstName"
+                   placeholder="Pleas enter First name" required>
         </div>
         <div class="col-md-6 mb-3">
             <label for="lastName">Last name</label>
-            <input type="text" class="form-control" title="Enter Last name." id="lastName" placeholder="Pleas enter Last name" required>
+            <input type="text" class="form-control" title="Enter Last name." id="lastName"
+                   placeholder="Pleas enter Last name" required>
         </div>
         <div class="col-md-6 mb-3">
             <label for="gender">Gender</label>
-            <input type="text" class="form-control" title="Enter you gender." id="gender"  placeholder="Pleas enter yours gender" required>
+            <input type="text" class="form-control" title="Enter you gender." id="gender"
+                   placeholder="Pleas enter yours gender" required>
         </div>
         <div class="col-md-6 mb-3">
             <label for="description">Description</label>
-            <input type="text" class="form-control" title="Enter Description." id="description"  placeholder="Pleas enter Description" required>
+            <input type="text" class="form-control" title="Enter Description." id="description"
+                   placeholder="Pleas enter Description" required>
         </div>
     </div>
     <button type="button" class="btn btn-primary" onclick="return validate();">Submit</button>
 </form>
 <br>
 <!-- Под формой добавте таблицу используя описание из задания-->
-<<table class="table table-striped">
+<table class="table table-striped" id='table'>
     <!-- инвертирование цвета /темный фон+ светл буквы table-dark.
      Полосатые ряды table table-striped -->
     <thead class="thead-dark"> <!-- темный токлько загололвок таблицы-->
@@ -115,5 +145,6 @@
     </tr>
     </tbody>
 </table>
+<button type="button" class="btn btn-primary" onclick="addRow()">Add row</button>
 </body>
 </html>
