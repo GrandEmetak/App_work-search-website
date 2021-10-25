@@ -58,8 +58,6 @@ e
 5src/main/java/ru/job4j/dream/servlet/PostServlet.java,e\3\e366b8a9fe0ad6255a62cb36d2b71989d8bf84ce
 i
 9src/test/ru/job4j/dream/servlet/CandidateServletTest.java,b\0\b0b36921d19f1f45f7f8c87d040f457bc2eae407
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 d
 4src/test/ru/job4j/dream/servlet/PostServletTest.java,2\8\280878ac6acb476c788b96329b67eb46c6cf0016
 e
