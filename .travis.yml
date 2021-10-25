@@ -25,6 +25,3 @@ notifications:
       -JekHamond@tutanota.com
     on_success: never # default: change
     on_failure: always # default: always
-env:
-  global:
-    - CODECOV_TOKEN="bfcb2b9a-8e9f-43fe-b0b1-fa85b6c6668c"
