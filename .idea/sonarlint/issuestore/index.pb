@@ -13,8 +13,6 @@ b
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 O
 src/main/webapp/PhotoUpload.jsp,0\5\0526e876e4030591c312649f1a7809d80072bdc4
-D
-job4j_dreamjob_1.iml,6\1\61e9a9d2b931bce38609b34b0b590573423f2619
 f
 6src/main/java/ru/job4j/dream/servlet/IndexServlet.java,7\5\75ac7b7e445844061fab82b591f82b21044fe70f
 :
