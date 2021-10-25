@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title> <!--Подключите к нему таблицу стилей bootstrap: -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
+</div>
+<form>
+    <div class="form-auto">
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom01">First name</label>
+            <input type="text" class="form-control" id="validationCustom01" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom02">Last name</label>
+            <input type="text" class="form-control" id="validationCustom02" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom03">Gender</label>
+            <input type="text" class="form-control" id="validationCustom03" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom04">Description</label>
+            <input type="text" class="form-control" id="validationCustom04" required>
+        </div>
+    </div>
+</form>
+<br>
+<table class="table"><!-- Под формой добавте таблицу используя описание из задания-->
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>man</td>
+        <td>workman</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>man</td>
+        <td>CEO</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Karry</td>
+        <td>Bird</td>
+        <td>woman</td>
+        <td>helper</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
