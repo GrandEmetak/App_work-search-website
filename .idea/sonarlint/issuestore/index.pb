@@ -15,9 +15,6 @@ O
 src/main/webapp/PhotoUpload.jsp,0\5\0526e876e4030591c312649f1a7809d80072bdc4
 f
 6src/main/java/ru/job4j/dream/servlet/IndexServlet.java,7\5\75ac7b7e445844061fab82b591f82b21044fe70f
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 =
 db/schema.sql,d\1\d19519c76e8593a74e058b0faf7a7a9aa4b1ae61
 F
@@ -72,3 +69,21 @@ I
 src/main/webapp/login.jsp,8\5\85ee523d01e5e19376db640e846c91bbcb0a1c22
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+I
+src/main/webapp/posts.jsp,b\9\b925937968c4da7f8e4bf6debd5cc9ac5f161431
+I
+src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
+G
+src/main/webapp/reg.jsp,6\c\6c64b8f39d9cc7200dfbd5a883a0a9932d0553b1
+B
+db/schemaUsers.sql,9\5\955c8054e95379154aecb8c2a3868908c223f039
+c
+3src/main/java/ru/job4j/dream/filter/AuthFilter.java,2\7\27c8c03274305a739078ec329cdae48c7be0b1de
+d
+4src/main/java/ru/job4j/dream/servlet/RegServlet.java,2\5\25a8fa90e21b11d1f5462ea406ae28df2a31821e
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+;
+.travis.yml,d\e\dea01dd89a3b602828e630677fde5d77c06441c8
+D
+job4j_dreamjob_1.iml,6\1\61e9a9d2b931bce38609b34b0b590573423f2619
