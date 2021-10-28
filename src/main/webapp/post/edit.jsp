@@ -30,36 +30,89 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
+
     <title>Работа мечты</title>
+    <script>
+        function validate() {
+            let x = Boolean(true);
+            if ($('#firstName').val() === '') {
+                x = false;
+            }
+            if ($('#description').val() === '') {
+                x = false;
+            }
+            if ($('#city').val() === '') {
+                x = false;
+            }
+            return x;
+        }
+    </script>
+    <script>
+        function addRow() {
+            if (validate()) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/dreamjob_1/posts.do',
+                    data: 'id' + $('#id').val(),
+                    'name=': +$('#firstName').val(),
+                    'description=': +$('#description').val(),
+                    'city=': +$('#city').val(),
+                    dataType: 'text'
+                }).done(function (data) {
+                    alert(data);
+                }).fail(function (err) {
+                    alert(err);
+                });
+            }
+        }
+    </script>
 </head>
 <body>
 <%
     String id = request.getParameter("id");
-    Post post = new Post(0, "");
+    Post post = new Post(0, "", "", "");
     if (id != null) {
         post = PsqlStore.instOf().findById(Integer.parseInt(id));
     }
 %>
-<div class="container pt-3">
-    <div class="row">
+<div class="needs-validation" novalidate>
+    <div class="form-auto">
         <div class="card" style="width: 100%">
             <div class="card-header">
                 <% if (id == null) { %>
-                Новая вакансия.
+                <h5>New Post</h5>
                 <% } else { %>
-                Редактирование вакансии.
+                <h5>you are in the Post edit field</h5>
                 <% } %>
             </div>
             <div class="card-body">
                 <%-- ниже адрес сервлета в web.xml длЯ загрузки указна метод ПОСТ
                  <form action="<%=request.getContextPath()%>/post/save?id=<%=post.getId()%>" method="post"> был это но поменяли на  post.do
                  --%>
-                <form action="<%=request.getContextPath()%>/posts.do?id=<%=post.getId()%>" method="post">
+                <form action="<%=request.getContextPath()%>/posts.do?id=<%=post.getId()%>" method="post" ><%--id="id" --%>
                     <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" class="form-control" name="name" value="<%=post.getName()%>">
+                        <div class="col-md-6 mb-3">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name" value="<%=post.getName()%>"
+                                   id="firstName"
+                                   placeholder="Pleas enter First name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Description</label>
+                            <input type="text" class="form-control" name="description"
+                                   value="<%=post.getDescription()%>"
+                                   id="description"
+                                   placeholder="Please enter description Post" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="city" value="<%=post.getCityId()%>"
+                                   id="city"
+                                   placeholder="Please enter your city" required>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <%-- <button type="submit" class="btn btn-primary">Сохранить</button> addRow(--%>
+                    <button type="submit" class="btn btn-primary" onclick="validate()">Save</button>
                 </form>
             </div>
         </div>

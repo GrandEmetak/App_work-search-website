@@ -1,7 +1,7 @@
-CREATE TABLE candidate (
+CREATE TABLE post (
  id SERIAL PRIMARY KEY,
  name TEXT,
- position TEXT,
+ description TEXT,
  created TIMESTAMP not null,
  city_id int references city(id)
 );

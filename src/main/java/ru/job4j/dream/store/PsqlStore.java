@@ -10,10 +10,9 @@ import ru.job4j.dream.model.User;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,10 +21,11 @@ import java.util.Properties;
 /**
  * 2. Замена MemStore на PsqlStore [#51922 #209148]01
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5. База данных в Web
- *3. Расширить Store для пользователя. [#283109 #209648]
+ * 3. Расширить Store для пользователя. [#283109 #209648]
  * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
  * 1. Расширьте интерфейс Store. Добавьте методы для работы с классом User.
  * сохранение и поиск по email, и добавьте реализацию в методы
+ *
  * @author SlartiBartFast-art
  * @since 13.10.21
  */
@@ -74,11 +74,17 @@ public class PsqlStore implements Store {
     public Collection<Post> findAllPosts() {
         List<Post> posts = new ArrayList<>();
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("SELECT * FROM post")
+             PreparedStatement ps = cn.prepareStatement(
+                     "SELECT * FROM post join city as t1 on city_id = t1.id")
         ) {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
-                    posts.add(new Post(it.getInt("id"), it.getString("name")));
+                    posts.add(new Post(it.getInt("id"),
+                            it.getString("name"),
+                            it.getString("description"),
+                            it.getString(7),
+                            convert(it.getTimestamp("created").toLocalDateTime()))
+                    );
                 }
             }
         } catch (SQLException e) {
@@ -96,11 +102,18 @@ public class PsqlStore implements Store {
     public Collection<Candidate> findAllCandidates() {
         List<Candidate> candidates = new ArrayList<>();
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("SELECT * FROM candidate")
+             PreparedStatement ps = cn.prepareStatement(
+                     "SELECT * FROM candidate join city as t1 on city_id = t1.id")
         ) {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
-                    candidates.add(new Candidate(it.getInt("id"), it.getString("name")));
+                    candidates.add(
+                            new Candidate(
+                                    it.getInt("id"), it.getString("name"),
+                                    it.getString("position"),
+                                    it.getString(7),
+                                    convert(it.getTimestamp("created").toLocalDateTime())
+                            ));
                 }
             }
         } catch (SQLException e) {
@@ -199,9 +212,13 @@ public class PsqlStore implements Store {
     private Post create(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO post(name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
+                     "INSERT INTO post(name, description, created, city_id ) VALUES (?, ?, ?, ?)",
+                     PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, post.getName());
+            ps.setString(2, post.getDescription());
+            ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setInt(4, cityIdInst(post.getCityId()));
             ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
@@ -214,6 +231,26 @@ public class PsqlStore implements Store {
         return post;
     }
 
+    private int cityIdInst(String string) {
+        int rsl = 0;
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     "INSERT INTO city(name) VALUES (?)",
+                     PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, string);
+            ps.execute();
+            try (ResultSet id = ps.getGeneratedKeys()) {
+                if (id.next()) {
+                    rsl = id.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("create(Post post) ERROR. Unable to SQL query", e);
+        }
+        return rsl;
+    }
+
     /**
      * Create new Object Candidate in the table candidate
      *
@@ -223,9 +260,13 @@ public class PsqlStore implements Store {
     private Candidate createCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO candidate(name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
+                     "INSERT INTO candidate(name, position, created, city_id) VALUES (?, ?, ?, ?)",
+                     PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, candidate.getName());
+            ps.setString(2, candidate.getPosition());
+            ps.setTimestamp(3, Timestamp.valueOf(candidate.getDateTime()));
+            ps.setInt(4, cityIdInst(candidate.getCityId()));
             ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
@@ -246,10 +287,12 @@ public class PsqlStore implements Store {
     private void update(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "UPDATE post SET name = (?) WHERE id = (?)")
+                     "UPDATE post SET name = (?), description = (?), city_id = (?)  WHERE id = (?)")
         ) {
             ps.setString(1, post.getName());
-            ps.setInt(2, post.getId());
+            ps.setString(2, post.getDescription());
+            ps.setInt(3, cityIdInst(post.getCityId()));
+            ps.setInt(4, post.getId());
             ps.execute();
         } catch (SQLException e) {
             LOGGER.error("update(Post post) ERROR. Unable to SQL query", e);
@@ -264,10 +307,12 @@ public class PsqlStore implements Store {
     private void updateCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "UPDATE candidate SET name = (?) WHERE id = (?)")
+                     "UPDATE candidate SET name = (?), position = (?), city_id = (?) WHERE id = (?)")
         ) {
             ps.setString(1, candidate.getName());
-            ps.setInt(2, candidate.getId());
+            ps.setString(2, candidate.getPosition());
+            ps.setInt(3, cityIdInst(candidate.getCityId()));
+            ps.setInt(4, candidate.getId());
             ps.execute();
         } catch (SQLException e) {
             LOGGER.error("updateCandidate(Candidate candidate) ERROR. Unable to SQL query", e);
@@ -282,18 +327,28 @@ public class PsqlStore implements Store {
      *
      * @param id value Post object
      * @return Post Object
+     * SELECT  t1.name, t1.position, t2.name, t1.created"
+     * + " from candidate as t1"
+     * + " join city as t2 on t2.id = t1.city_id"
+     * + " where t1.id = (?)")
+     * "SELECT * FROM post WHERE id = (?)")
      */
     @Override
     public Post findById(int id) {
         Post post = null;
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "SELECT name FROM post WHERE id = (?)")
+                     "SELECT  t1.name, t1.description, t2.name, t1.created"
+                             + " from post as t1 join city as t2 on t2.id = t1.city_id"
+                             + " where t1.id = (?)")
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
-                    post = new Post(id, it.getString("name"));
+                    post = new Post(it.getInt("id"),
+                            it.getString("name"),
+                            it.getString("description"),
+                            convert(it.getTimestamp("created").toLocalDateTime()));
                 }
             }
         } catch (SQLException e) {
@@ -311,31 +366,38 @@ public class PsqlStore implements Store {
      * @param id value Candidate object
      * @return Candidate Object
      */
-    @Override
+    @Override// "SELECT * FROM candidate WHERE id = (?)"
     public Candidate findByIdCandidate(int id) {
         Candidate candidate = null;
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "SELECT name FROM candidate WHERE id = (?)")
+                     "SELECT  t1.name, t1.position, t2.name, t1.created"
+                             + " from candidate as t1"
+                             + " join city as t2 on t2.id = t1.city_id"
+                             + " where t1.id = (?)")
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
-                    candidate = new Candidate(id, it.getString("name"));
+                    candidate = new Candidate(
+                            id, it.getString("name"),
+                            it.getString("position"),
+                            it.getString(3),
+                            convert(it.getTimestamp("created").toLocalDateTime())
+                    );
                     System.out.println("Что возвращается из БД : " + candidate.getName() + " " + candidate.getId());
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Ошибка логера");
-            e.printStackTrace();
+            /*e.printStackTrace();*/
             LOGGER.error("findByIdCandidate(int id) ERROR. Unable to SQL query", e);
         }
-        System.out.println("Что RETURN : " + candidate.getName() + " " + candidate.getId());
         return candidate;
     }
 
     /**
      * Метод производит сохрение пользователя в БД через вызов метода createUser(user);
+     *
      * @param user Пользователь
      */
     @Override
@@ -369,15 +431,87 @@ public class PsqlStore implements Store {
         return user;
     }
 
-    public static void main(String[] args) {
-        var f = PsqlStore.instOf().findAllCandidates();
-        for (Candidate candidate : f) {
-            System.out.println("КАНДИДАТ : " + candidate.getName() + " " + candidate.getId());
+    /**
+     * Метод выводит кандидатов за последние сутки из БД
+     *
+     * @return
+     */
+    @Override
+    public Collection<Candidate> findByData() {
+        List<Candidate> candidates = new ArrayList<>();
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     "SELECT t1.id, t1.name, t1.position, t2.name, t1.created"
+                             + " from candidate as t1 join city as t2 on t2.id = t1.city_id"
+                             + " where created between CURRENT_TIMESTAMP - interval '1 day' and CURRENT_TIMESTAMP")
+        ) {
+            try (ResultSet it = ps.executeQuery()) {
+                while (it.next()) {
+                    candidates.add(new Candidate(
+                            it.getInt("id"), it.getString("name"),
+                            it.getString("position"), it.getString(4),
+                            convert(it.getTimestamp("created").toLocalDateTime())));
+                    // it.getTimestamp("created").toLocalDateTime()));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("findByEmail(String email) ERROR. Unable to SQL query", e);
+            //e.printStackTrace();
         }
-        var c = PsqlStore.instOf().findByIdCandidate(1);
-        System.out.println("ЧТо нашли в БД : " + c.getName() + c.getId());
-        var r = PsqlStore.instOf().findById(1);
-        System.out.println("Что возвращается из БД : " + r.getName() + " " + r.getId());
+        return candidates;
     }
 
+    @Override
+    public Collection<Post> findByDataPost() {
+        List<Post> posts = new ArrayList<>();
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     "SELECT t1.id, t1.name, t1.description, t2.name, t1.created"
+                             + " from post as t1 join city as t2 on t2.id = t1.city_id"
+                             + " where created between CURRENT_TIMESTAMP - interval '1 day' and CURRENT_TIMESTAMP")
+        ) {
+            try (ResultSet it = ps.executeQuery()) {
+                while (it.next()) {
+                    posts.add(new Post(
+                            it.getInt("id"), it.getString("name"),
+                            it.getString("description"), it.getString(4),
+                            convert(it.getTimestamp("created").toLocalDateTime())));
+                    // it.getTimestamp("created").toLocalDateTime()));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("findByEmail(String email) ERROR. Unable to SQL query", e);
+            //e.printStackTrace();
+        }
+        return posts;
+    }
+
+    /**
+     * метод проводит конвертацию времени из LocalDateTime в String
+     *
+     * @param localDateTime
+     * @return
+     */
+    private String convert(LocalDateTime localDateTime) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy.");
+        return localDateTime.format(dateTimeFormatter);
+    }
+
+    public static void main(String[] args) {
+      /*  var f = PsqlStore.instOf().findAllCandidates();
+        for (Candidate candidate : f) {
+            System.out.println("CANDIDATE : " + candidate);
+            /*System.out.println("КАНДИДАТ : " + candidate.getName() + " " + candidate.getId());*/
+        /*  }*/
+        var c = PsqlStore.instOf().findByIdCandidate(1);
+        System.out.println("ЧТо нашли в БД : " + c.getName() + c.getId() + " " + c.getCityId());
+       /* var r = PsqlStore.instOf().findById(1);
+        System.out.println("Что возвращается из БД : " + r.getName() + " " + r.getId());*/
+       /* for (Post post : PsqlStore.instOf().findAllPosts()) {
+            System.out.println("Post " + post);
+        }*/
+        for (Candidate candidate : PsqlStore.instOf().findByData()) {
+            System.out.println("candidate : " + candidate);
+        }
+    }
 }

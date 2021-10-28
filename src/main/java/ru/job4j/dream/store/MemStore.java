@@ -23,9 +23,9 @@ public class MemStore implements Store {
     private final Map<Integer, User> users = new ConcurrentHashMap<>();
 
     private MemStore() {
-        posts.put(1, new Post(1, "Junior Java Job"));
-        posts.put(2, new Post(2, "Middle Java Job"));
-        posts.put(3, new Post(3, "Senior Java Job"));
+        posts.put(1, new Post(1, "Junior Java Job", "начинающий java программист"));
+        posts.put(2, new Post(2, "Middle Java Job", "опытный java программист"));
+        posts.put(3, new Post(3, "Senior Java Job", "профессионалльный java программист"));
         candidates.put(1, new Candidate(1, "Junior Java"));
         candidates.put(2, new Candidate(2, "Middle Java"));
         candidates.put(3, new Candidate(3, "Senior Java"));
@@ -90,6 +90,24 @@ public class MemStore implements Store {
             }
         }
         return user;
+    }
+
+    /**
+     * поиск кандидатов за последние 24 часа в БД
+     * @return
+     */
+    @Override
+    public Collection<Candidate> findByData() {
+        return null;
+    }
+
+    /**
+     * поиск Вакансий за последние 24 часа в БД
+     * @return
+     */
+    @Override
+    public Collection<Post> findByDataPost() {
+        return null;
     }
 
     /**

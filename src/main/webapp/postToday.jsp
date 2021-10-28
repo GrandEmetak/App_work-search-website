@@ -1,27 +1,10 @@
 <%--
   Created by IntelliJ IDEA.
   User: SlartiBartFast-art
-  Date: 13.10.2021
-  Time: 16:39
+  Date: 27.10.2021
+  Time: 21:25
   To change this template use File | Settings | File Templates.
-  <%--Когда в браузере открывается любая ссылка, он отправляет http запрос с типом GET.
-        public class PostServlet extends HttpServlet {
-            @Override
-            protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                req.setAttribute("posts", Store.instOf().findAllPosts()); - В методу doGet мы загружаем в request список вакансий.
-                req.getRequestDispatcher("posts.jsp").forward(req, resp);    }
-                ----- было до замены на Библиотеку стилей JSTl
-                 <% for (Post post : (Collection<Post>) request.getAttribute("posts")) { %>
-                            <tr>
-                                <td>                --добавить иконку редактирования втаблицу и ссылку на страницу edit. --
-                            <a href="<%=request.getContextPath()%>/post/edit.jsp?id=<%=post.getId()%>">
-                                <i class="fa fa-edit mr-3"></i>
-                            </a>
-                            <%= post.getName() %>
-                            </td>
-                            </tr>
-                            <% } %>
-                              --%>
+--%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Post" %><%-- --%>
@@ -90,19 +73,12 @@
                     </div>
                     <div class="card-body">
                         <table class="table">
-                            <ul class="bottom-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/postTDY.do">
-                                        <h6>Список Вакансий за последние 24 часа</h6></a>
-                                </li>
                                 <thead>
                                 <tr>
-
+                                    <th scope="col"></th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">City</th>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -110,7 +86,6 @@
                                     <tr>
                                         <td><c:out value="${post.name}"/></td>
                                         <td><c:out value="${post.description}"/></td>
-                                        <td><c:out value="${post.cityId}"/></td>
                                         <td><c:out value="${post.created}"/></td>
                                         <td>                <%--добавить иконку редактирования втаблицу и ссылку на страницу edit. --%>
                                             <a href='<c:url value="/post/edit.jsp?id=${post.id}"/>'>

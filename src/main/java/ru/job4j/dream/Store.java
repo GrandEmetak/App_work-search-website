@@ -35,4 +35,8 @@ public interface Store {
     void save(User user);
 
     User findByEmail(String email);
+
+    Collection<Candidate> findByData();
+
+    Collection<Post> findByDataPost();
 }

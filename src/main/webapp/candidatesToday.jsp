@@ -1,10 +1,10 @@
 <%--
   Created by IntelliJ IDEA.
   User: SlartiBartFast-art
-  Date: 13.10.2021
-  Time: 16:35
+  Date: 27.10.2021
+  Time: 16:22
   To change this template use File | Settings | File Templates.
-  У нас есть отдельная кнопка Выйти - ее функционал реализуем отдельно. Для этого определим следующую ссылку в сервлете:
+   У нас есть отдельная кнопка Выйти - ее функционал реализуем отдельно. Для этого определим следующую ссылку в сервлете:
 <c:if test="${user != null}">
     <li class="nav-item">
         <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">Выйти</a>
@@ -31,12 +31,14 @@
    </td>
    </tr>
    --%>
+
 <%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="ru.job4j.dream.store.PsqlStore" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -106,19 +108,13 @@
             </div>
             <div class="card-body">
                 <table class="table">
-                    <ul class="bottom-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<%=request.getContextPath()%>/candidateT.do">
-                                <h6>Список Кандидатов за последние 24 часа</h6></a>
-                        </li>
-                    </ul>
                     <thead>
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
                         <th scope="col">City</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Date create</th>
                         <th scope="col">Edit/Delete</th>
                     </tr>
                     </thead>
@@ -129,8 +125,7 @@
                             <td> <%-- Передали в ДонлоадСервлет по ключу name - id Кандидата, doGet вернул фото из папки с таким номером--%>
                                 <img src="<c:url value='/download?name=${candidate.id}'/>" width="50px" height="50px"/>
                             </td>
-                            <td><c:out value="${candidate.name}"/></td>
-                                <%-- c:out value="post.name"- Вывод значения post. --%>
+                            <td><c:out value="${candidate.name}"/></td><%-- c:out value="post.name"- Вывод значения post. --%>
                             <td><c:out value="${candidate.position}"/></td>
                             <td><c:out value="${candidate.cityId}"/></td>
                             <td><c:out value="${candidate.created}"/></td>
@@ -151,10 +146,11 @@
                         </tr>
                     </c:forEach>
                     </tbody>
-                </table> <!-- -->
+                </table>
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+
