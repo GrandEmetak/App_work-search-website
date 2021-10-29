@@ -366,7 +366,7 @@ public class PsqlStore implements Store {
      * @param id value Candidate object
      * @return Candidate Object
      */
-    @Override// "SELECT * FROM candidate WHERE id = (?)"
+    @Override
     public Candidate findByIdCandidate(int id) {
         Candidate candidate = null;
         try (Connection cn = pool.getConnection();
@@ -451,12 +451,10 @@ public class PsqlStore implements Store {
                             it.getInt("id"), it.getString("name"),
                             it.getString("position"), it.getString(4),
                             convert(it.getTimestamp("created").toLocalDateTime())));
-                    // it.getTimestamp("created").toLocalDateTime()));
                 }
             }
         } catch (SQLException e) {
             LOGGER.error("findByEmail(String email) ERROR. Unable to SQL query", e);
-            //e.printStackTrace();
         }
         return candidates;
     }
@@ -476,12 +474,10 @@ public class PsqlStore implements Store {
                             it.getInt("id"), it.getString("name"),
                             it.getString("description"), it.getString(4),
                             convert(it.getTimestamp("created").toLocalDateTime())));
-                    // it.getTimestamp("created").toLocalDateTime()));
                 }
             }
         } catch (SQLException e) {
             LOGGER.error("findByEmail(String email) ERROR. Unable to SQL query", e);
-            //e.printStackTrace();
         }
         return posts;
     }

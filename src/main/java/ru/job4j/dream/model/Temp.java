@@ -24,6 +24,5 @@ public class Temp {
        var f = localDateTime.format(dateTimeFormatter);
         System.out.println(f);
         LocalDateTime localDateTime1 = LocalDateTime.now();
-        //localDateTime1 = f;
     }
 }
