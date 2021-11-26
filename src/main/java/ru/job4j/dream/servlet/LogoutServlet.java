@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 
 /**
+ * -@WebServlet(urlPatterns = "/logout.do")
  * 1. HttpSession [#6869 #209565]
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.6. Filter, Security
  * ВАЖНО! установлена аннотация @WebServlet вместо web.xml
@@ -23,7 +24,6 @@ import javax.servlet.annotation.WebServlet;
  * @author SlartiBartFast-art
  * @since 20.10.21
  */
-@WebServlet(urlPatterns = "/logout.do")
 public class LogoutServlet extends HttpServlet {
     /**
      * Код сервлета достаточно прост, мы получаем сессию в следующей строке:

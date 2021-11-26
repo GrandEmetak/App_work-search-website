@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 
 /**
+ *  -@WebServlet(urlPatterns = "/auth.do")
  * 0. Страница Login.jsp [#281230 #209175]
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.6. Filter, Security
  * Сервлет проверяет почту и пароль, если они совпадают, то переходит на страницу вакансий.
@@ -28,7 +29,7 @@ import java.io.IOException;
  * @author SlartiBartFast-art
  * @since 20.10.21
  */
-@WebServlet(urlPatterns = "/auth.do")
+
 public class AuthServlet extends HttpServlet {
 
     /**

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * -@WebServlet(urlPatterns = "/index.do")
  * 0. MVC в Servlet. [#6868 #207783]0
  * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.4. Шаблон MVC
  * Model - это классы, которые содержать данные. В нашем примере это класс Store.
@@ -23,7 +24,6 @@ import java.io.IOException;
  * @author SlartiBartFast-art
  * @since 13.10.21
  */
-@WebServlet(urlPatterns = "/index.do")
 public class IndexServlet extends HttpServlet {
     /**
      * мы перенаправляем запрос в index.jsp.

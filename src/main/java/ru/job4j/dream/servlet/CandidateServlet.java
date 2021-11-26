@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * -@WebServlet(urlPatterns = "/candidates.do")
  * 2. CandidateSerlvet. Создание кандидата. [#2513]02
  * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.3. Servlet
  * Создайте CandidateServlet.
@@ -36,7 +37,6 @@ import java.io.IOException;
  * @version 04
  * @since 21.09.21
  */
-@WebServlet(urlPatterns = "/candidates.do")
 public class CandidateServlet extends HttpServlet {
     /**
      * мы перенаправляем запрос в index.jsp.

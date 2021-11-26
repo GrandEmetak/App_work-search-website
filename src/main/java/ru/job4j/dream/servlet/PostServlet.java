@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * -@WebServlet(urlPatterns = "/posts.do")
  * 1. Servlet. Web.xml [#6866]02
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSPТопик : 3.2.3. Servlet
  * Чтобы tomcat знал о нашем классе нужно его прописать в настройку окружения - web.xml
@@ -38,7 +39,6 @@ import java.util.ArrayList;
  * @version 05
  * @since 22.09.21
  */
-@WebServlet(urlPatterns = "/posts.do")
 public class PostServlet extends HttpServlet {
 
     /**

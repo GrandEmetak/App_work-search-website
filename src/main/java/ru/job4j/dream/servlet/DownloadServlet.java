@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
+ *- @WebServlet(urlPatterns = "/download")
  * 1. Загрузка и скачивание файла. [#154183 #207844]
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5.1. Form
  * класс DownloadServlet. Это servlet будет отдавать файл, который лежит на сервере.
@@ -24,7 +25,6 @@ import java.io.IOException;
  * @author SlartiBartFast-art
  * @since 13.10.21
  */
-@WebServlet(urlPatterns = "/download")
 public class DownloadServlet extends HttpServlet {
     /**
      * Теперь добавим в сервлете вывод на консоль содержимого папки c:\images

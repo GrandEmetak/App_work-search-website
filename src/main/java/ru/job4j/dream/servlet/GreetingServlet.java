@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ * -@WebServlet(urlPatterns = "/greet")
  * 4. Ajax Jquery [#58534 #210961]
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSPТопик : 3.2.8. JS, JQuery, Ajax
  * механизмом Ajax. Этот механизм позволяет с помощью JS
@@ -45,7 +46,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @author SlartiBartFast-art
  * @since 25.10.21
  */
-@WebServlet(urlPatterns = "/greet")
 public class GreetingServlet extends HttpServlet {
     private static final Gson GSON = new GsonBuilder().create();
     private final List<Email> emails = new CopyOnWriteArrayList<>();

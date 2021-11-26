@@ -11,9 +11,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * -@WebServlet(urlPatterns = "/delete.do")
  * Серлет проводит действия по удалению кандидата
  */
-@WebServlet(urlPatterns = "/delete.do")
 public class DeleteServlet extends HttpServlet {
 
     @Override

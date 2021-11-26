@@ -22,6 +22,7 @@ import java.util.List;
 import javax.servlet.http.HttpServlet;
 
 /**
+ * -@WebServlet(urlPatterns = "/upload")
  * 1. Загрузка и скачивание файла. [#154183 #207844]
  * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5.1. Form
  * класс UploadServlet. Это servlet будет обрабатывать загрузку файла на сервер.
@@ -32,7 +33,6 @@ import javax.servlet.http.HttpServlet;
  * @author SlartiBartFast-art
  * @since 13.10.21
  */
-@WebServlet(urlPatterns = "/upload")
 public class UploadServlet extends HttpServlet {
 
     /**
