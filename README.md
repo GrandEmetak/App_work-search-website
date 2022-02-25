@@ -1,5 +1,9 @@
-[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1.svg?branch=master)](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1)
 # job4j_dreamjob
+
+[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1.svg?branch=master)](https://app.travis-ci.com/SlartiBartFast-art/job4j_dreamjob_1)
+![GitHub language count](https://img.shields.io/github/languages/count/SlartiBartFast-art/job4j_dreamjob_1)
+![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/job4j_dreamjob_1?logo=java&logoColor=red)
+![GitHub last commit](https://img.shields.io/github/last-commit/SlartiBartFast-art/job4j_dreamjob_1?logo=github)
 
 This post project is a job site. Users can register and add a vacancy or resume,
 as well as view both vacancies and resumes created in the last 24 hours.
