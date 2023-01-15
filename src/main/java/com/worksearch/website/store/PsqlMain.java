@@ -4,9 +4,7 @@ import com.worksearch.website.model.Post;
 import com.worksearch.website.Store;
 
 /**
- * 2. Замена MemStore на PsqlStore [#51922 #209148]
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5. База данных в Web
- * @author SlartiBartFast-art
+ * Замена MemStore на PsqlStore
  * @since 13.10.21
  */
 public class PsqlMain {

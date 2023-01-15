@@ -19,14 +19,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * 2. Замена MemStore на PsqlStore [#51922 #209148]01
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSP Топик : 3.2.5. База данных в Web
- * 3. Расширить Store для пользователя. [#283109 #209648]
- * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
- * 1. Расширьте интерфейс Store. Добавьте методы для работы с классом User.
- * сохранение и поиск по email, и добавьте реализацию в методы
- *
- * @author SlartiBartFast-art
+ * Замена MemStore на PsqlStore
  * @since 13.10.21
  */
 public class PsqlStore implements Store {
