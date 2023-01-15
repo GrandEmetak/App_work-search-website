@@ -12,12 +12,9 @@ import java.io.IOException;
 
 /**
  * -@WebServlet(urlPatterns = "/reg.do")
- * 4. Регистрация пользователя. [#283110 #209712]01
- * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
- *  ATTENTION! -
- *  удален файл web.xml, произведена замена во всех классах
- *  на аннотацию @WebServlet(urlPattern = " маппинг имя")
- *
+ * ATTENTION! -
+ * удален файл web.xml, произведена замена во всех классах
+ * на аннотацию @WebServlet(urlPattern = " маппинг имя")
  */
 public class RegServlet extends HttpServlet {
     @Override
@@ -34,20 +31,6 @@ public class RegServlet extends HttpServlet {
      * admin.setEmail(email);
      * sc.setAttribute("user", admin);
      * Теперь эти данные можно получить на другой странице.
-     * <p>
-     * 4. Регистрация пользователя. [#283110 #209712]
-     * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
-     * Авторизация и регистрацию сделайте через Store. В предыдущих уроках мы загрузали пользователя в коде.
-     * User admin = new User();
-     * admin.setName("Admin");
-     * admin.setEmail(email);
-     * sc.setAttribute("user", admin);
-     * Нужно это переделать на Store.instOf().findByEmail().
-     *
-     * @param req
-     * @param resp
-     * @throws ServletException
-     * @throws IOException
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -16,6 +16,7 @@ import java.io.IOException;
  */
 @WebServlet(urlPatterns = "/postTDY.do")
 public class PostTodayServlet extends HttpServlet {
+
     /**
      * мы перенаправляем запрос в posts.jsp.     *
      * req.getRequestDispatcher("posts.jsp").forward(req, resp);
