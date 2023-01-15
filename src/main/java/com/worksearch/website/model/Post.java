@@ -6,15 +6,11 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * 2. Scriplet. Динамическая таблица. [#276520]
- * Уровень : 3. Мидл Категория : 3.2.
- * Servlet JSPТопик : 3.2.2. JSP
- * path 1
- *
- * @author SlartiBartFast-art
+ * Модель данных - описывающая Пост(Информационное сообщение)
  * @since 21.09.21
  */
 public class Post {
+
     private int id;
     private String name;
     private String description;

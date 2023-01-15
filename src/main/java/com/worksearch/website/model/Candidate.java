@@ -4,20 +4,12 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 4. candidates.jsp - список кандидатов. [#276522]
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSPТопик : 3.2.2. JSP
- * модель описывающую кандидата.
- * 5. Реализация интерфейса [#2519]
- * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.8. JS, JQuery, Ajax
- * Добавить в модель Candidate поле city_id.
- * 5 . Реализация интерфейса [#2519]10
- * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.8. JS, JQuery, Ajax
- * переделываение модели данных Кандидат 26.10.21
- *
- * @author SlartiBartFast-art
+ * Модель описывающую кандидата.
+ * candidates.jsp - список кандидатов.
  * @since 22.09.21
  */
 public class Candidate {
+
     private int id;
     private String name;
     private String position;

@@ -3,15 +3,10 @@ package com.worksearch.website.model;
 import java.util.Objects;
 
 /**
- * 1. HttpSession [#6869]
- * Уровень : 3. МидлКатегория : 3.2. Servlet JSP Топик : 3.2.6. Filter, Security
- * Когда браузер отправляет запрос в tomcat создается объект HttpSession.
- * Этот объект связан с работой текущего пользователя.
- * Если вы открете другой браузер и сделаете новый запрос, то tomcat создаст еще один объект HttpSession,
- * который уже будет связан с другим пользователем.
- * В объекте HttpSession можно хранить информацию о текущем пользователе.
+ * Модель хранить информацию о пользователе.
  */
 public class User {
+
     private int id;
     private String name;
     private String email;
