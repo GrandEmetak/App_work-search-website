@@ -5,9 +5,25 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/GrandEmetak/App_work-search-website?logo=java&logoColor=red)
 ![GitHub last commit](https://img.shields.io/github/last-commit/GrandEmetak/App_work-search-website?logo=github)
 
-This post project is a job site. Users can register and add a vacancy or resume,
+This app is a light version a job site. 
+
+Users can register and add a vacancy or resume,
 as well as view both vacancies and resumes created in the last 24 hours.
-  
+
+Used technologies stack:
+
+
+- Java Core
+- Hibernate
+- PowerMock
+- Servlet-API  
+- JSTL
+- Maven - Build Tool
+- PostgreSQL (DB)
+- Postman - Test REST API
+- Travis C.I.
+
+
   ![Image of Arch](https://github.com/GrandEmetak/App_work-search-website/blob/master/image/Screenshot_1.jpg)
 
 - В системе два типа пользователей: желающие разместить резюме и представители работодалей.
