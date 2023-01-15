@@ -4,14 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.job4j</groupId>
-    <artifactId>job4j_dreamjob_1</artifactId>
+    <groupId>com.worksearch</groupId>
+    <artifactId>work_search_website</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>job4j_dreamjob_1 Maven Webapp</name>
+    <name>Work_search-website Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
-    <!--  <url>http://www.example.com</url> -->
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
