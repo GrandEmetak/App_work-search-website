@@ -8,19 +8,6 @@ import java.io.IOException;
 
 /**
  * -@WebServlet(urlPatterns = "/index.do")
- * 0. MVC в Servlet. [#6868 #207783]0
- * Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.4. Шаблон MVC
- * Model - это классы, которые содержать данные. В нашем примере это класс Store.
- * <p>
- * Controller - этот класс собирает данные для вида. В нашем примере - это Servlet.
- * View - это отображение данных. В нашем примере это JSP.
- * Под каждую JSP создадим сервлет.
- * index.jsp - IndexServlet
- * +
- * ATTENTION! -
- * удален файл web.xml, произведена замена во всех классах на аннотацию @WebServlet(urlPattern = " маппинг имя")
- *
- * @author SlartiBartFast-art
  * @since 13.10.21
  */
 public class IndexServlet extends HttpServlet {
