@@ -11,43 +11,43 @@
     <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>PostServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.PostServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.PostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CandidateServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.CandidateServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.CandidateServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.IndexServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.IndexServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DownloadServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.DownloadServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.DownloadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.UploadServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.UploadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.DeleteServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.DeleteServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AuthServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.AuthServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.AuthServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>ru.job4j.dream.servlet.LogoutServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.LogoutServlet</servlet-class>
     </servlet>
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>ru.job4j.dream.filter.AuthFilter</filter-class>
+        <filter-class>com.worksearch.website.filter.AuthFilter</filter-class>
     </filter>
     <servlet>
         <servlet-name>GreetingServlet</servlet-name><!-- сервлет, который будет отрабатывать запросы.-->
-        <servlet-class>ru.job4j.dream.servlet.GreetingServlet</servlet-class>
+        <servlet-class>com.worksearch.website.servlet.GreetingServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PostServlet</servlet-name>

@@ -23,8 +23,8 @@
                             <% } %>
                               --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.MemStore" %>
-<%@ page import="ru.job4j.dream.model.Post" %><%-- --%>
+<%@ page import="com.worksearch.website.store.MemStore" %>
+<%@ page import="com.worksearch.website.model.Post" %><%-- --%>
 <%@ page import="java.util.Collection" %><%-- --%>
 <%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

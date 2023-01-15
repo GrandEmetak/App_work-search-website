@@ -34,9 +34,9 @@
 
 <%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.model.Candidate" %>
+<%@ page import="com.worksearch.website.model.Candidate" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="ru.job4j.dream.store.PsqlStore" %>
+<%@ page import="com.worksearch.website.store.PsqlStore" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

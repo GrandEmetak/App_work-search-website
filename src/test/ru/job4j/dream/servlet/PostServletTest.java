@@ -1,7 +1,6 @@
 package ru.job4j.dream.servlet;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.*;
 import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;

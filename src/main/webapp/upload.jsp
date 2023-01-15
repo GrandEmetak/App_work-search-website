@@ -1,6 +1,6 @@
-<%@ page import="ru.job4j.dream.model.Candidate" %>
-<%@ page import="ru.job4j.dream.store.MemStore" %>
-<%@ page import="ru.job4j.dream.store.PsqlStore" %><%--
+<%@ page import="com.worksearch.website.model.Candidate" %>
+<%@ page import="com.worksearch.website.store.MemStore" %>
+<%@ page import="com.worksearch.website.store.PsqlStore" %><%--
   Created by IntelliJ IDEA.
   User: SlartiBartFast-art
   Date: 14.10.2021

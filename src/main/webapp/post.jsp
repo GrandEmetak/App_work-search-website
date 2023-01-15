@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.MemStore" %>
-<%@ page import="ru.job4j.dream.model.Post" %>
-<%@ page import="ru.job4j.dream.store.PsqlStore" %>
+<%@ page import="com.worksearch.website.store.MemStore" %>
+<%@ page import="com.worksearch.website.model.Post" %>
+<%@ page import="com.worksearch.website.store.PsqlStore" %>
 <!doctype html>
 <html lang="en">
 <head>
