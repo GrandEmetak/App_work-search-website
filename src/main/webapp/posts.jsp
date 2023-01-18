@@ -1,27 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: SlartiBartFast-art
-  Date: 13.10.2021
-  Time: 16:39
-  To change this template use File | Settings | File Templates.
-  <%--Когда в браузере открывается любая ссылка, он отправляет http запрос с типом GET.
-        public class PostServlet extends HttpServlet {
-            @Override
-            protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                req.setAttribute("posts", Store.instOf().findAllPosts()); - В методу doGet мы загружаем в request список вакансий.
-                req.getRequestDispatcher("posts.jsp").forward(req, resp);    }
-                ----- было до замены на Библиотеку стилей JSTl
-                 <% for (Post post : (Collection<Post>) request.getAttribute("posts")) { %>
-                            <tr>
-                                <td>                --добавить иконку редактирования втаблицу и ссылку на страницу edit. --
-                            <a href="<%=request.getContextPath()%>/post/edit.jsp?id=<%=post.getId()%>">
-                                <i class="fa fa-edit mr-3"></i>
-                            </a>
-                            <%= post.getName() %>
-                            </td>
-                            </tr>
-                            <% } %>
-                              --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.worksearch.website.store.MemStore" %>
 <%@ page import="com.worksearch.website.model.Post" %><%-- --%>
