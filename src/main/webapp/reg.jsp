@@ -1,11 +1,7 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: SlartiBartFast-art
+  Created by IntelliJ IDEA. 
   Date: 21.10.2021
   Time: 17:17
-  To change this template use File | Settings | File Templates.
-  4. Регистрация пользователя. [#283110 #209712]01
-Уровень : 3. МидлКатегория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
  Создайте страница reg.jsp. Сервлет RegServlet.
 2. На странице login.jsp добавьте ссылку - регистрация.
 --%>
