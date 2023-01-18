@@ -1,36 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  Date: 13.10.2021
-  Time: 16:35
-  To change this template use File | Settings | File Templates.
-  У нас есть отдельная кнопка Выйти - ее функционал реализуем отдельно. Для этого определим следующую ссылку в сервлете:
-<c:if test="${user != null}">
-    <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">Выйти</a>
-    </li>
-</c:if>
---%>
-<%--
-                   было <% for (Candidate candidate : (Collection<Candidate>) request.getAttribute("posts")) { %>
-                    Когда в браузере открывается любая ссылка, он отправляет http запрос с типом GET.
-                   public class CandidateServlet extends HttpServlet {
-                   @Override
-                   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                   req.setAttribute("posts", Store.instOf().findAllPosts()); - В методу doGet мы загружаем в request список вакансий.
-                   req.getRequestDispatcher("candidate.jsp").forward(req, resp);    }
-
-                  WARNING!!! было до переписывани под библиотеку JSPL
-                   <% for (Candidate candidate : (Collection<Candidate>) request.getAttribute("candidates")) { --%>
-<%--   <tr>
-       <td>                <%--добавить иконку редактирования втаблицу и ссылку на страницу edit.
-   <a href="<%=request.getContextPath()%>/candidate/edit.jsp?id=<%=candidate.getId()%>">
-       <i class="fa fa-edit mr-3"></i>
-   </a>
-   <%= candidate.getName() %>
-   </td>
-   </tr>
-   --%>
-<%-- библиотекой JSTL. Напомню, что Scriplet - это Java код написанный в JSP. Чтобы писать код в едином стиле используют библиотеку тегов JSTL. --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.worksearch.website.store.MemStore" %>
 <%@ page import="com.worksearch.website.model.Candidate" %>
