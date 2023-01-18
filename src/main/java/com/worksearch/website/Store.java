@@ -8,13 +8,10 @@ import java.util.Collection;
 
 /**
  * 1. PsqlStore. [#281226]
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSPТопик : 3.2.5. База данных в Web
  * Сделаем интерфейс Store
  * 3. Расширить Store для пользователя. [#283109]
- * Уровень : 3. Мидл Категория : 3.2. Servlet JSPТопик : 3.2.6. Filter, Security
  * Расширьте интерфейс Store. Добавьте методы для работы с классом User.
  * сохранение и поиск по email
- * @author SlartiBartFast-art
  * @since 13.10.21
  */
 public interface Store {
