@@ -2,7 +2,6 @@
 <%@ page import="com.worksearch.website.store.MemStore" %>
 <%@ page import="com.worksearch.website.store.PsqlStore" %><%--
   Created by IntelliJ IDEA.
-  User: SlartiBartFast-art
   Date: 14.10.2021
   Time: 19:34
   To change this template use File | Settings | File Templates.
